@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="row-fluid">
+        <form role="form" method="post" action="/servers/{{ server.id }}/edit">
+            {{ form.csrf_token }}
+            {% if form.errors %}
+            <div class="form-group">
+                <div class="alert alert-danger">
+                    {% for message in form.name.errors %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <div class="form-group">
+                <label>Change server name to:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+        <form role="form" method="post" action="/servers/{{ server.id }}/delete">
+            <div class="form-group">
+                <label>Do you want to delete this server?</label>
+                <button type="submit" class="btn btn-default">
+                    Yes
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

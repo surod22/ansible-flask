@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="row-fluid">
+
+        {% for server in servers %}
+            <h2>Server: {{ server.name }}</h2>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Welcome to the Flask app</h1>
+    <p class="lead">This is the home page for the Flask app</p>
+    <div class="row-fluid">
+        <div class="span6">
+            <table class="table-bordered">
+                <tr>
+                    {% for name, value in result.iteritems() %}
+                        <th>
+                            {{ name }}
+                        </th>
+
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    {% for name, value in result.iteritems() %}
+                        <td>
+                            {{ value }}
+                        </td>
+                    {% endfor %}
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
