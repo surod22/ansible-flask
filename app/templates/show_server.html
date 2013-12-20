@@ -2,6 +2,11 @@
 {% block content %}
     <div class="row-fluid">
         <h2>Server: {{ server.name }} </h2>
+        <ul>
+            {% for variable in server.variables %}
+                <li>{{ variable.name }}: {{ variable.value }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
 {% endblock %}

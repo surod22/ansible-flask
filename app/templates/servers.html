@@ -3,7 +3,12 @@
     <div class="row-fluid">
 
         {% for server in servers %}
-            <h2>Server: {{ server.name }}</h2>
+            <h2>Server {{ server.id }}: {{ server.name }}</h2>
+            <ul>
+            {% for variable in server.variables %}
+                <li>{{ variable.name }}: {{ variable.value }}</li>
+             {% endfor %}
+            </ul>
         {% endfor %}
 
     </div>

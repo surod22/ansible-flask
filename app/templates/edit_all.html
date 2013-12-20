@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="row-fluid">
+        <form role="form" method="post" action="/servers/edit">
+            {{ form.csrf_token }}
+            {% if form.errors %}
+            <div class="form-group">
+                <div class="alert alert-danger">
+                    {% for message in form.name.errors %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <div class="form-group">
+                {% for server in form.servers %}
+                    <label>Change server name to:</label>
+                    {{ server.name }}
+                    {% for variable in server.variables %}
+                        {{ variable }}
+                    {% endfor %}
+                 {% endfor %}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
