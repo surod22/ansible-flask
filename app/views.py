@@ -28,11 +28,15 @@ def new():
     variable_form = VariableForm(request.form, obj=variable)
     form = ServerForm(request.form, obj=new_server)
     if form.validate_on_submit():
-        form.populate_obj(new_server)
-        db.session.add(new_server)
-        db.session.commit()
-        return redirect('/servers')
-    form.variables.append_entry(variable_form)
+        if form.add_variable.data:
+            form.variables.append_entry(variable_form)
+        elif form.delete_variable.data and len(form.variables.entries) > 1:
+            form.variables.pop_entry()
+        elif form.create_server.data:
+            form.populate_obj(new_server)
+            db.session.add(new_server)
+            db.session.commit()
+            return redirect('/servers')
     return render_template('new_server.html', form=form)
 
 @app.route('/servers/<server_id>/edit', methods=['GET', 'POST'])

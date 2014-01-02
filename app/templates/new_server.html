@@ -41,7 +41,9 @@
             {% endfor %}
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" class="btn btn-default" value="Create Server"/>
+                    {{ form.create_server(class_='btn btn-primary') }}
+                    {{ form.add_variable(class_='btn btn-default') }}
+                    {{ form.delete_variable(class_='btn btn-default') }}
                 </div>
             </div>
         </form>

@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, FormField, FieldList
+from wtforms import TextField, FormField, FieldList, SubmitField
 from wtforms.validators import Required
 from wtforms.widgets import TableWidget
 from wtforms_alchemy import model_form_factory, ModelFieldList
@@ -17,4 +17,7 @@ class ServerForm(ModelForm):
     class Meta:
         model = Server
 
-    variables = ModelFieldList(FormField(VariableForm, widget=TableWidget(with_table_tag=False)))
+    variables = ModelFieldList(FormField(VariableForm, widget=TableWidget(with_table_tag=False)), min_entries=1)
+    create_server = SubmitField('Create Server')
+    add_variable = SubmitField('Add Variable')
+    delete_variable = SubmitField('Remove Variable')
