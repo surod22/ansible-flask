@@ -1,4 +1,4 @@
-#!/Users/thoughtworker/git_repo/ansible/ansible-venv/bin/python
+#!/Users/Thoughtworker/PycharmProjects/ansible-flask/venv/bin/python
 import imp
 from migrate.versioning import api
 from app import db

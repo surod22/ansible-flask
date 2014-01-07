@@ -1,3 +1,4 @@
+from app.yml_output import create_yml
 from flask.ext.wtf import Form
 from wtforms.ext.sqlalchemy.orm import model_form
 from wtforms.validators import Required
@@ -36,6 +37,7 @@ def new():
             form.populate_obj(new_server)
             db.session.add(new_server)
             db.session.commit()
+            create_yml()
             return redirect('/servers')
     return render_template('new_server.html', form=form)
 
