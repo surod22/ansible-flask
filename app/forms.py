@@ -1,7 +1,7 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, FormField, FieldList, SubmitField
-from wtforms.validators import Required
-from wtforms.widgets import TableWidget
+from wtforms import TextField, FormField, FieldList, SubmitField, Field, BooleanField
+from wtforms.validators import Required, ValidationError, Optional
+from wtforms.widgets import TableWidget, HTMLString, Input
 from wtforms_alchemy import model_form_factory, ModelFieldList
 from app.models import Server, Variable
 

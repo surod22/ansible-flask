@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="row-fluid">
-        <form class="form-horizontal" role="form" method="post" action="/servers/new" name="new">
+        <form class="form-horizontal" role="form" method="post" action="/servers/new" name="new" id="new_form">
             {{ form.hidden_tag() }}
             <legend>New Server Creation</legend>
             {% if form.errors %}
@@ -34,7 +34,7 @@
                                 <div class="col-sm-2">{{ field }}</div>
 
                             {% endfor %}
-                                <div class="col-sm-4"></div>
+                            <div class="col-sm-4"></div>
                         </div>
                     </div>
                 </div>
@@ -50,5 +50,7 @@
 
 
     </div>
+
+    <script src="{{ url_for('static', filename='js/addRemoveVariables.js') }}"></script>
 
 {% endblock %}

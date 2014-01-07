@@ -3,7 +3,7 @@ from wtforms.ext.sqlalchemy.orm import model_form
 from wtforms.validators import Required
 from app.forms import ServerForm, VariableForm
 from app.models import Server, Variable
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for, jsonify
 from app import app, db
 
 
@@ -25,14 +25,14 @@ def index():
 def new():
     new_server = Server()
     variable = Variable()
-    variable_form = VariableForm(request.form, obj=variable)
+    variable_form = VariableForm(obj=variable)
     form = ServerForm(request.form, obj=new_server)
-    if form.validate_on_submit():
-        if form.add_variable.data:
+    if form.add_variable.data:
             form.variables.append_entry(variable_form)
-        elif form.delete_variable.data and len(form.variables.entries) > 1:
+    elif form.delete_variable.data and len(form.variables.entries) > 1:
             form.variables.pop_entry()
-        elif form.create_server.data:
+    elif form.validate_on_submit():
+        if form.create_server.data:
             form.populate_obj(new_server)
             db.session.add(new_server)
             db.session.commit()
