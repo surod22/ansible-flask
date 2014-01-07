@@ -5,6 +5,7 @@ from app.forms import ServerForm, VariableForm
 from app.models import Server, Variable
 from flask import render_template, request, redirect, url_for, jsonify
 from app import app, db
+from app.yml_output import create_yml
 
 
 @app.route('/')
@@ -36,6 +37,7 @@ def new():
             form.populate_obj(new_server)
             db.session.add(new_server)
             db.session.commit()
+            create_yml()
             return redirect('/servers')
     return render_template('new_server.html', form=form)
 
